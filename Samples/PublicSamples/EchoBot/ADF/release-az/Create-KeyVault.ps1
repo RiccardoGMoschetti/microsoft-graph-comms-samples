@@ -63,7 +63,12 @@ if (Get-AzKeyVault -Name $KVName -EA SilentlyContinue)
         $CurrentUserId = Get-AzContext | ForEach-Object account | ForEach-Object Id
         if (! (Get-AzRoleAssignment -ResourceGroupName $RGName -SignInName $CurrentUserId -RoleDefinitionName $RoleName))
         {
-            New-AzRoleAssignment -ResourceGroupName $RGName -SignInName $CurrentUserId -RoleDefinitionName $RoleName -Verbose
+			Write-Output "this is going to break"
+			Write-Output "this is going to break RG: $RGName"
+			Write-Output "this is going to break SignInName: $CurrentUserId"
+			Write-Output "this is going to break Role: $RoleName"
+			
+           New-AzRoleAssignment -ResourceGroupName $RGName -SignInName $CurrentUserId -RoleDefinitionName $RoleName -Verbose
         }
     }
     catch
